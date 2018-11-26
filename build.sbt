@@ -9,7 +9,6 @@ version := "0.1.0-SNAPSHOT"
 scalaVersion := "2.12.3"
 
 resolvers += Classpaths.typesafeReleases
-mainClass in assembly := Some("eu.vandekeybus.cooluris.JettyLauncher")
 
 libraryDependencies ++= Seq(
   "org.scalatra" %% "scalatra" % ScalatraVersion,

@@ -21,8 +21,6 @@ class WebApi(repository: Repository) extends ScalatraServlet {
     if (uri.isEmpty) {
       halt(400, """{ "error": "query parameter uri is required"}""")
     }
-   
-    
     val result = getRepresentations(uri) getOrElse halt(404, s"""no linked data representation of $uri was found""")
 
     if (acceptsRDF && stringVal(result, "dataURL").nonEmpty)
@@ -45,7 +43,7 @@ class WebApi(repository: Repository) extends ScalatraServlet {
   private def getRepresentations(uri: String): Option[BindingSet] = {
     val con = repository.getConnection
     val queryString = s"""
-                  SELECT ?pageURL ?dataURL 
+                  SELECT ?pageURL ?dataURL
                   WHERE {
                     OPTIONAL { <$uri> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> ?dataURL. }
                     OPTIONAL { <$uri> <http://xmlns.com/foaf/0.1/page> ?pageURL. }
