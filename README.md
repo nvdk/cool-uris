@@ -14,7 +14,7 @@ docker run -p 80:8080 --name cool-uri -e SPARQL_ENDPOINT="https://stad.gent/spar
 $curl -i http://localhost/?uri=https://stad.gent/id/agents/083b7b32-df2e-4da4-bcc5-b7fe75ea8426
 ```
 
-## Example redirection of https://qa.stad.gent/id/visualart/streetart/05c7b793-b387-4b0f-b3da-63c4d3900e76
+## Example redirection
 
 1. Step 1 set up a reverse proxy that redirects `https://qa.stad.gent/id/` to cool-uris. 
 
