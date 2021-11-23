@@ -9,5 +9,7 @@ class ScalatraBootstrap extends LifeCycle {
     val repo = new SPARQLRepository(sparqlEndpoint)
     repo.initialize()
     context.mount(new WebApi(repo), "/*")
+    context.setInitParameter("org.scalatra.cors.allowedOrigins", "*")
+    context.setInitParameter("org.scalatra.cors.allowCredentials", "false")
   }
 }

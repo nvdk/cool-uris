@@ -21,7 +21,7 @@ class WebApi(repository: Repository) extends ScalatraServlet {
     if (uri.isEmpty) {
       halt(400, """{ "error": "query parameter uri is required"}""")
     }
-    val result = getRepresentations(uri) getOrElse halt(404, s"""no linked data representation of $uri was found""")
+    val result = getRepresentations(uri) getOrElse halt(404, s"""{ "error": "no linked data representation of $uri was found"}""")
 
     if (acceptsRDF && stringVal(result, "dataURL").nonEmpty)
       halt(303,"", Map("Location" -> stringVal(result, "dataURL")))
