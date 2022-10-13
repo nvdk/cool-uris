@@ -1,7 +1,8 @@
 FROM openjdk:12
 RUN adduser -d /app cool-uris
-ADD https://github.com/nvdk/cool-uris/releases/download/v1.0.0/cool-uris-1.0.0.jar /app/cool-uris.jar
-RUN chown cool-uris:cool-uris /app/cool-uris.jar
+ADD --chown=cool-uris:cool-uris https://github.com/nvdk/cool-uris/releases/download/v1.0.0/cool-uris-1.0.0.jar /app/cool-uris.jar
+RUN  chgrp -R 0 /app && chmod -R g+rwX /app
 USER cool-uris
 WORKDIR /app
+EXPOSE 8080
 CMD ["java","-jar","cool-uris.jar"]
