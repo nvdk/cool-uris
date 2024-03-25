@@ -5,5 +5,10 @@ RUN sbt assembly
 
 FROM openjdk:12
 ENV SPARQL_ENDPOINT=http://database:8890/sparql
-COPY --from=builder /app/target/scala-2.13/*assembly*.jar /app/cool-uris.jar
-CMD ["java","-jar","/app/cool-uris.jar"]
+RUN adduser -d /app cool-uris
+RUN  chgrp -R 0 /app && chmod -R g+rwX /app
+COPY --from=builder --chown=cool-uris:cool-uris /app/target/scala-2.13/*assembly*.jar /app/cool-uris.jar
+USER cool-uris
+WORKDIR /app
+EXPOSE 8080
+CMD ["java","-jar","cool-uris.jar"]
