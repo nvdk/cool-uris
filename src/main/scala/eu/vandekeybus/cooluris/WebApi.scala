@@ -9,7 +9,7 @@ import java.net.URLEncoder
 import org.slf4j.{Logger, LoggerFactory}
 
 class WebApi(repository: Repository) extends ScalatraServlet {
-  val rdfTypes = Set("text/rdf+n3", "text/rdf+ttl", "text/rdf+turtle", "text/turtle", "text/n3", "application/turtle", "application/x-turtle", "application/rdf+xml")
+  val rdfTypes = Set("text/rdf+n3", "text/rdf+ttl", "text/rdf+turtle", "text/turtle", "text/n3", "application/turtle", "application/x-turtle", "application/rdf+xml", "application/ld+json")
   val htmlTypes = Set("text/html", "text/*", "*/*")
   val logger =  LoggerFactory.getLogger(getClass)
 
