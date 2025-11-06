@@ -1,13 +1,13 @@
 import eu.vandekeybus.cooluris._
 import org.scalatra._
-import javax.servlet.ServletContext
+import jakarta.servlet.ServletContext
 import org.eclipse.rdf4j.repository.sparql.SPARQLRepository
 
 class ScalatraBootstrap extends LifeCycle {
   override def init(context: ServletContext) {
     val sparqlEndpoint = sys.env("SPARQL_ENDPOINT")
     val repo = new SPARQLRepository(sparqlEndpoint)
-    repo.initialize()
+    // RDF4J 5.x auto-initializes repositories
     context.mount(new WebApi(repo), "/*")
     context.setInitParameter("org.scalatra.cors.allowedOrigins", "*")
     context.setInitParameter("org.scalatra.cors.allowCredentials", "false")

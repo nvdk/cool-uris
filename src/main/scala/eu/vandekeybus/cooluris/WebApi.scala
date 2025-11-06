@@ -14,7 +14,7 @@ class WebApi(repository: Repository) extends ScalatraServlet {
   val logger =  LoggerFactory.getLogger(getClass)
 
   get("/") {
-    val uri = params("uri")
+    val uri = params.getOrElse("uri", "")
 
     response.setHeader("Vary", "Accept")
     response.setHeader("Cache-Control", "max-age=30,must-revalidate")

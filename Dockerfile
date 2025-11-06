@@ -1,4 +1,4 @@
-FROM mozilla/sbt:8u292_1.5.4 AS builder
+FROM sbtscala/scala-sbt:eclipse-temurin-jammy-21.0.2_13_1.10.2_2.13.15 AS builder
 COPY . /app
 WORKDIR /app
 RUN sbt assembly
