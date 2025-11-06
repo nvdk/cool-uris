@@ -3,12 +3,9 @@ COPY . /app
 WORKDIR /app
 RUN sbt assembly
 
-FROM openjdk:12
+FROM eclipse-temurin:21-jre-jammy
 ENV SPARQL_ENDPOINT=http://database:8890/sparql
-RUN adduser -d /app cool-uris
-RUN  chgrp -R 0 /app && chmod -R g+rwX /app
-COPY --from=builder --chown=cool-uris:cool-uris /app/target/scala-2.13/*assembly*.jar /app/cool-uris.jar
-USER cool-uris
-WORKDIR /app
+COPY --from=builder /app/target/scala-2.13/*assembly*.jar /opt/app/cool-uris.jar
+WORKDIR /opt/app
 EXPOSE 8080
 CMD ["java","-jar","cool-uris.jar"]
