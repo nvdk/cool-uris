@@ -3,7 +3,7 @@ COPY . /app
 WORKDIR /app
 RUN sbt assembly
 
-FROM eclipse-temurin:21-jre-jammy
+FROM azul/zulu-openjdk:21-jre
 ENV SPARQL_ENDPOINT=http://database:8890/sparql
 COPY --from=builder /app/target/scala-2.13/*assembly*.jar /opt/app/cool-uris.jar
 WORKDIR /opt/app
