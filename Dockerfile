@@ -1,4 +1,4 @@
-FROM mozilla/sbt:8u292_1.5.4 AS builder
+FROM --platform=$BUILDPLATFORM mozilla/sbt:8u292_1.5.4 AS builder
 COPY . /app
 WORKDIR /app
 RUN sbt assembly
